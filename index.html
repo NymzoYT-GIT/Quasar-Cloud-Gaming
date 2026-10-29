@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050816">
+  <title>Quasar | Cloud Gaming</title>
+
+  <style>
+    :root {
+      --bg: #050816;
+      --panel: #0b1226;
+      --border: #1b2b4a;
+      --cyan: #00e5ff;
+      --purple: #a855f7;
+      --text: #f1f5ff;
+      --muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at top, #101b3b 0%, transparent 55%),
+        var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 6%;
+      border-bottom: 1px solid var(--border);
+      background: rgba(5, 8, 22, 0.9);
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background: #64748b;
+    }
+
+    main {
+      width: min(1100px, 90%);
+      margin: 50px auto;
+    }
+
+    .hero {
+      padding: 38px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: linear-gradient(120deg, #101d3b, #100c29);
+      box-shadow: 0 0 45px #00e5ff0a;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+
+    h1 {
+      margin: 16px 0;
+      font-size: clamp(32px, 6vw, 55px);
+      line-height: 1.1;
+    }
+
+    h1 span {
+      color: var(--cyan);
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .search {
+      width: 100%;
+      margin-top: 22px;
+      padding: 15px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      background: #060d20;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .search:focus {
+      border-color: var(--cyan);
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 36px 0 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .badge {
+      padding: 7px 10px;
+      border: 1px solid #a855f744;
+      border-radius: 20px;
+      color: #c084fc;
+      font-size: 11px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--panel);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--purple);
+    }
+
+    .game-icon {
+      display: grid;
+      place-items: center;
+      height: 100px;
+      margin-bottom: 18px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #132849, #281346);
+      font-size: 40px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+    }
+
+    .card p {
+      min-height: 46px;
+      margin: 0 0 18px;
+      font-size: 13px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: 0;
+      border-radius: 9px;
+      background: linear-gradient(90deg, var(--cyan), #72f4ff);
+      color: #04101c;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      filter: brightness(1.1);
+    }
+
+    .notice {
+      margin-top: 28px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #080e20;
+      font-size: 13px;
+    }
+
+    footer {
+      padding: 30px 15px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 18px 5%;
+      }
+
+      main {
+        margin-top: 28px;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">QUASAR<span>.</span></div>
+    <div class="status">Server not connected</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">YOUR GAMES. YOUR CLOUD.</div>
+
+      <h1>Gaming without<br>
+        <span>hardware limits.</span>
+      </h1>
+
+      <p>
+        A browser-based gaming platform powered by Quasar.
+        Open your library, choose a game, and connect to
+        your gaming server when one is available.
+      </p>
+
+      <input
+        class="search"
+        id="search"
+        type="search"
+        placeholder="Search your game library..."
+        aria-label="Search games"
+      >
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <h2>Game Library</h2>
+        <span class="badge">EARLY DEVELOPMENT</span>
+      </div>
+
+      <div class="grid" id="games">
+        <article class="card" data-name="test session">
+          <div class="game-icon">🎮</div>
+          <h3>Test Session</h3>
+          <p>
+            A placeholder for your first cloud gaming session.
+          </p>
+          <button data-game="Test Session">Check Connection</button>
+        </article>
+
+        <article class="card" data-name="browser games">
+          <div class="game-icon">🌐</div>
+          <h3>Browser Games</h3>
+          <p>
+            A future collection of games playable directly
+            in your browser.
+          </p>
+          <button data-game="Browser Games">Check Connection</button>
+        </article>
+
+        <article class="card" data-name="remote gaming">
+          <div class="game-icon">⚡</div>
+          <h3>Remote Gaming</h3>
+          <p>
+            A place for games streamed from compatible
+            remote hardware.
+          </p>
+          <button data-game="Remote Gaming">Check Connection</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="notice">
+      <strong>Server status:</strong>
+      <p id="message" aria-live="polite">
+        No gaming server has been configured yet.
+        These buttons are interface placeholders, not active
+        game launches.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    QUASAR CLOUD GAMING · PERSONAL PROJECT · 2026
+  </footer>
+
+  <script>
+    const search = document.getElementById("search");
+    const cards = document.querySelectorAll(".card");
+    const message = document.getElementById("message");
+
+    search.addEventListener("input", () => {
+      const query = search.value.trim().toLowerCase();
+
+      cards.forEach(card => {
+        card.hidden = !card.dataset.name.includes(query);
+      });
+    });
+
+    document.querySelectorAll("[data-game]").forEach(button => {
+      button.addEventListener("click", () => {
+        message.textContent =
+          `${button.dataset.game}: no gaming server is connected yet. ` +
+          "We will configure streaming after finding compatible hardware.";
+      });
+    });
+  </script>
+</body>
+</html>
